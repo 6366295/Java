@@ -1,11 +1,13 @@
 /*
- * Naam: Mike Trieu
- * Studentennummer: 10105093 / 6366295
- * Studie: Informatica
+ * Naam:		Mike Trieu
+ * Studentennummer:	10105093 / 6366295
+ * Studie:		Informatica
  *
  * Programma functie:
- * Dit programma telt n tot 0 bij elkaar op.
- * Wanneer een invoer wordt gegeven buiten het bereik, dan wordt dat aangegeven.
+ * - Dit programma telt n tot 0 bij elkaar op.
+ * - Wanneer een invoer wordt gegeven buiten het bereik, dan wordt dat aangegeven.
+ *
+ * - Gebruik: java Opgave1 10
  */
 
 public class Opgave1 {
