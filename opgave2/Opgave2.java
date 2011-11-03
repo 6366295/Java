@@ -1,7 +1,7 @@
 /*
  * Naam:		Mike Trieu
  * Studentennummer:	10105093 / 6366295
- * Opleiding:		Informatica
+ * Studie:		Informatica
  *
  * Programma functie: 
  *  Functie 1:
@@ -16,7 +16,7 @@
  *  Functie 4:
  *  - Het programma rondt de uitkomst van oppervlakte en volume van functie 3 af op 3 decimalen.
  *
- *  - Gebruik: java Opgave2
+ * - Gebruik: java Opgave2
  */
 
 import java.util.*;
