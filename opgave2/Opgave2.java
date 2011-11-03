@@ -1,14 +1,23 @@
 /*
-* Naam: Mike Trieu
-* Studentennummer: 10105093 / 6366295
-* Opleiding: Informatica
-*
-* Opdracht:
-*  Functie 1: Ingevoerde seconden omzetten in uren, minuten, seconden
-*  Functie 2: Ingevoerde integer omzetten naar ASCII karakter
-*  Functie 3: Ingevoerde double gebruiken om oppervlakte en volume te berekenen
-*  Functie 4: Uitkomst van deel 3 afronden om 3 decimalen
-*/
+ * Naam:		Mike Trieu
+ * Studentennummer:	10105093 / 6366295
+ * Opleiding:		Informatica
+ *
+ * Programma functie: 
+ *  Functie 1:
+ *  Het programma vraagt om een invoer van een geheel aantal seconden.
+ *  De invoer wordt omgezet naar uren, minuten en seconden.
+ *  Functie 2:
+ *  Het programma vraagt om een invoer (integer) van 0 tot en met 128.
+ *  Het programma zet de integer om naar een ASCII karakter.
+ *  Wanneer de invoer onder de 0 of boven de 128 is, dan wordt dat aangegeven.
+ *  Functie 3:
+ *  Het programma vraagt om een straal (double) en berekent dan de oppervlakte en volume van een bol.
+ *  Functie 4:
+ *  Het programma rondt de uitkomst van oppervlakte en volume van functie 3 af op 3 decimalen.
+ *
+ *  Gebruik: java Opgave2
+ */
 
 import java.util.*;
 
@@ -20,8 +29,8 @@ public class Opgave2 {
 		int invoer = scanner.nextInt();
 
 		/*
-		* functie voor omzetten van seconden naar uren, minuten, seconden
-		*/
+		 * De functie voor het omzetten van seconden naar uren, minuten, seconden.
+		 */
 		int uren = invoer / 3600;
 		int restInvoer = invoer % 3600;
 		int minuten = restInvoer / 60;
@@ -38,10 +47,9 @@ public class Opgave2 {
 		int invoer2 = scanner.nextInt();
 
 		/*
-		* if-else functie om te kleine of te grote invoer te stoppen.
-		* (char)invoer2 zet invoer om naar ASCII karakters.
-		*/
-		if(invoer2 < 0 | invoer2 > 128) {
+		 * De functie om integer om te zetten naar ASCII karakters.
+		 */
+		if(invoer2 < 0 | invoer2 > 127) {
 			System.out.println(" ");
 			System.out.println("Dit is geen integer tussen 0 en 128");
 		}
@@ -57,33 +65,26 @@ public class Opgave2 {
 		double invoer3 = scanner.nextDouble();
 
 		/*
-		* if-else functie om te kleine of te grote invoer te stoppen.
-		* functie om oppervlakte en volume te berekenen.
-		*/
-		if(invoer3 > 133.65 | invoer < -133.65) {
-			System.out.println("Het ingevoerde getal is buiten bereik van dit programma");
-		}
-		else {
-			double oppervlakte = 4 * Math.PI * invoer3 * invoer3;
-			double teller = 4;
-			double volume = teller / 3 * Math.PI * invoer3 * invoer3 * invoer3;
-			System.out.println(" ");
-			System.out.println("De oppervlakte is: " + oppervlakte);
-			System.out.println(" ");
-			System.out.println("De volume is: " + volume);
-			System.out.println(" ");
+		 * De functie om oppervlakte en volume van een bol te berekenen.
+		 */
+		double oppervlakte = 4 * Math.PI * (invoer3 * invoer3);
+		double volume = (4.0 / 3) * Math.PI * (invoer3 * invoer3 * invoer3);
+		System.out.println(" ");
+		System.out.println("De oppervlakte is: " + oppervlakte);
+		System.out.println(" ");
+		System.out.println("De volume is: " + volume);
+		System.out.println(" ");
 
-			/*
-			* functie om uitgerekende oppervlakte en volume met 3 decimalen af te ronden
-			*/
-			System.out.println("Afgerond op 3 decimalen krijgen we:");
-			double oppervlakteTemp = Math.round(oppervlakte * 1000);
-			double oppervlakteAfgerond = oppervlakteTemp / 1000;
-			double volumeTemp = Math.round(volume * 1000);
-			double volumeAfgerond = volumeTemp / 1000;
-			System.out.println(" ");
-			System.out.println("Oppervlakte: " + oppervlakteAfgerond);
-			System.out.println("Volume: " + volumeAfgerond);
-		}
+		/*
+		 * De functie om de uitgerekende oppervlakte en volume op 3 decimalen af te ronden
+		 */
+		System.out.println("Afgerond op 3 decimalen krijgen we:");
+		double oppervlakteTemp = Math.round(oppervlakte * 1000);
+		double oppervlakteAfgerond = oppervlakteTemp / 1000;
+		double volumeTemp = Math.round(volume * 1000);
+		double volumeAfgerond = volumeTemp / 1000;
+		System.out.println(" ");
+		System.out.println("Oppervlakte: " + oppervlakteAfgerond);
+		System.out.println("Volume: " + volumeAfgerond);
 	}
 }
