@@ -15,15 +15,16 @@ public class Opgave1 {
 		 * De uitvoer wordt berekend door de functie som.
 		 */
 		int n = Integer.parseInt(args[0]);
-		int nsom = som(n);
-		System.out.println(nsom);
+
+		if(n < 0 || n > 65535) {
+			System.out.println("Invoer getal is te groot of te klein voor dit programma");
+		} else {
+			int nsom = som(n);
+			System.out.println(nsom);
+		}
 	}
 
 	public static int som(int k) {
-		if(k < 0)
-			System.out.println("Dit programma werkt maar tot en met 0");
-		if(k > 65535)
-			System.out.println("Invoer getal is te groot voor dit programma");
 		if(k == 0)
 			return 0;
 
