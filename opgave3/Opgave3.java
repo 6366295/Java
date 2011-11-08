@@ -1,4 +1,3 @@
- 
 /*
  * Naam:		Mike Trieu
  * Studentennummer:	10105093 / 6366295
