@@ -38,18 +38,18 @@ public class Opgave4 {
 				invoer = filterGetallenReeks(invoer);
 
 				if(palindromenTest(invoer))
-					System.out.println("\nHet ingevoerde cijferreeks is een palindroom");
+					System.out.println("\nDe ingevoerde cijferreeks is een palindroom");
 				else
-					System.out.println("\nHet ingevoerde cijferreeks is geen palindroom");
+					System.out.println("\nDe ingevoerde cijferreeks is geen palindroom");
 			}
 			else if(isZin(invoer)) {
 				System.out.println("\nEr is een zin ingevoerd\n");
 				invoer = filterZinOfWoord(invoer);
 
 				if(palindromenTest(invoer))
-					System.out.println("\nHet ingevoerde zin is een palindroom");
+					System.out.println("\nDe ingevoerde zin is een palindroom");
 				else
-					System.out.println("\nHet ingevoerde zin is geen palindroom");
+					System.out.println("\nDe ingevoerde zin is geen palindroom");
 			}
 			else {
 				System.out.println("\nEr is een woord ingevoerd\n");
