@@ -22,7 +22,7 @@ import java.io.*;
 public class Opgave6 {
 	public static void main(String[] args) throws IOException {
 		Scanner scanner = new Scanner(System.in);
-		Hotel hotel = new Hotel();
+		Hotel hotel = new Hotel(4);
 
 		boolean einde = false;
 		int invoer;
@@ -37,8 +37,7 @@ public class Opgave6 {
 			if(scanner.hasNextInt()) {
 				invoer = scanner.nextInt();
 				if(invoer < 1 || invoer > 4) {
-					System.out.println
-					("Ongeldige invoer!\n");
+					System.out.println("Ongeldige invoer!\n");
 				} else if(invoer == 1) {
 					hotel.overzicht();
 				} else if(invoer == 2) {
@@ -62,76 +61,78 @@ public class Opgave6 {
  */
 class Hotel {
 	Scanner scanner = new Scanner(System.in);
-	Kamer kamer1 = new Kamer();
-	Kamer kamer2 = new Kamer();
-	Kamer kamer3 = new Kamer();
-	Kamer kamer4 = new Kamer();
 	Gast gast = new Gast();
+	Kamer kamer[];
 
-	int invoer;
 	String voornaam, achternaam;
+	int invoer, bezet = 0;
+
+	/*
+	 * Constructor die de kamers maakt
+	 */
+	Hotel(int kamers){
+		kamer = new Kamer[kamers];
+
+		for(int i = 0; i < kamers; i++){
+			kamer[i] = new Kamer(i);
+		}
+        }
 
 	/*
 	 * methode dat een lijst met alle kamers en de bezetting van de kamers geeft
 	 */
 	void overzicht() {
-		System.out.println("Kamer 1: " + kamer1.ruimte);
-		System.out.println("Kamer 1: " + kamer2.ruimte);
-		System.out.println("Kamer 1: " + kamer3.ruimte);
-		System.out.println("Kamer 1: " + kamer4.ruimte + "\n");
+		for(int i = 0; i < kamer.length; i++) {
+			System.out.println("Kamer " + kamer[i].kamernummer + ": " +
+			kamer[i].voornaam + " " +  kamer[i].achternaam);
+		}
+		System.out.println("");
 	}
 
 	/*
 	 * methode om de gebruiker in te checken, mits er een kamer vrij is
 	 */
 	void checkin() {
-		if(kamer1.ruimte != "Vrij" && kamer2.ruimte != "Vrij" &&
-			kamer3.ruimte != "Vrij" && kamer4.ruimte != "Vrij") { 
-			System.out.println
-			("Er zijn momenteel helaas geen kamers vrij\n");
+		if(bezet == kamer.length){
+			System.out.println("Er zijn momenteel helaas geen kamers vrij\n");
 		} else {
-			System.out.print("Voornaam nieuwe gast: ");
-			if(scanner.hasNext()) {
-				voornaam = scanner.next();
-				gast.voornaam = voornaam;
-			} else {
-				System.out.println("Ongeldige invoer!\n");
-				scanner.next();
+			for(int i = 0; i < kamer.length; i++) {
+				if(kamer[i].ruimte == true) {
+					System.out.print("Voornaam nieuwe gast: ");
+					if(scanner.hasNext()) {
+						voornaam = scanner.next();
+						kamer[i].voornaam = voornaam;
+						break;
+					} else {
+						System.out.println("Ongeldige invoer!\n");
+						scanner.next();
+					}
+				}
 			}
 
-			System.out.print("Achternaam nieuwe gast: ");
-			if(scanner.hasNext()) {
-				achternaam = scanner.next();
-				gast.achternaam = achternaam;
-			} else {
-				System.out.println("Ongeldige invoer!\n");
-				scanner.next();
+			for(int i = 0; i < kamer.length; i++) {
+				if(kamer[i].ruimte == true) {
+					System.out.print("Achternaam nieuwe gast: ");
+					if(scanner.hasNext()) {
+						achternaam = scanner.next();
+						kamer[i].achternaam = achternaam;
+						break;
+					} else {
+						System.out.println("Ongeldige invoer!\n");
+						scanner.next();
+					}
+				}
 			}
 
-			if(kamer1.ruimte == "Vrij") {
-				kamer1.ruimte =
-				gast.voornaam + " " + gast.achternaam;
-
-				System.out.println
-				("Gast " + kamer1.ruimte + " krijgt kamer 1\n");
-			} else if(kamer2.ruimte == "Vrij") {
-				kamer2.ruimte =
-				gast.voornaam + " " + gast.achternaam;
-
-				System.out.println
-				("Gast " + kamer2.ruimte + " krijgt kamer 2\n");
-			} else if(kamer3.ruimte == "Vrij") {
-				kamer3.ruimte =
-				gast.voornaam + " " + gast.achternaam;
-
-				System.out.println
-				("Gast " + kamer3.ruimte + " krijgt kamer 3\n");
-			} else if(kamer4.ruimte == "Vrij") {
-				kamer4.ruimte =
-				gast.voornaam + " " + gast.achternaam;
-
-				System.out.println
-				("Gast " + kamer4.ruimte + " krijgt kamer 4\n");
+			for(int i = 0; i < kamer.length; i++) {
+				if(kamer[i].ruimte == true) {
+					System.out.println
+					("Gast " + kamer[i].voornaam + " " + kamer[i].achternaam +
+					" krijgt kamer " + kamer[i].kamernummer);
+					kamer[i].ruimte = false;
+					bezet++;
+					break;
+				}
 			}
 		}
 	}
@@ -143,28 +144,26 @@ class Hotel {
 		System.out.print("Kamernummer vertrekkende gast: ");
 		if(scanner.hasNextInt()) {
 			invoer = scanner.nextInt();
-			if(invoer < 1 || invoer > 4) {
-				System.out.println
-				("Ongeldige invoer!\n");
-			} else if(invoer == 1 && kamer1.ruimte != "Vrij") {
-				System.out.println
-				("\nGast " + kamer1.ruimte + " is uitgechecked\n");
-				kamer1.ruimte = "Vrij";
-			} else if(invoer == 2 && kamer2.ruimte != "Vrij") {
-				System.out.println
-				("\nGast " + kamer2.ruimte + " is uitgechecked\n");
-				kamer2.ruimte = "Vrij";
-			} else if(invoer == 3 && kamer3.ruimte != "Vrij") {
-				System.out.println
-				("\nGast " + kamer3.ruimte + " is uitgechecked\n");
-				kamer3.ruimte = "Vrij";
-			} else if(invoer == 4 && kamer4.ruimte != "Vrij") {
-				System.out.println
-				("\nGast " + kamer4.ruimte + " is uitgechecked\n");
-				kamer4.ruimte = "Vrij";
+			if(invoer < 0 || invoer > 3) {
+				System.out.println ("Ongeldige invoer!\n");
 			} else {
-				System.out.println
-				("\nNiemand is ingechecked in deze kamer\n");
+				for(int i = 0; i < kamer.length; i++) {
+					if(invoer == i && kamer[i].ruimte == false) {
+						bezet--;
+						System.out.println
+						("\nGast " + kamer[i].voornaam + " " + kamer[i].achternaam +
+						 " is uitgechecked\n");
+
+						kamer[i].ruimte = true;
+						kamer[i].voornaam = "Vrij";
+						kamer[i].achternaam = "";
+						bezet--;
+						break;
+					} else if(invoer == i && kamer[i].ruimte == true) {
+						System.out.println("\nNiemand is ingechecked in deze kamer\n");
+						break;
+					}
+				}
 			}
 		} else {
 			System.out.println("Ongeldige invoer!\n");
@@ -177,10 +176,17 @@ class Hotel {
  * Klasse voor het maken van een kamer object
  */
 class Kamer {
-	String ruimte;
+	Gast gast = new Gast();
 
-	Kamer() {
-		ruimte = "Vrij";
+	boolean ruimte;
+	int kamernummer = 0;
+	String voornaam, achternaam;
+
+	Kamer(int nummer) {
+		ruimte = true;
+		kamernummer = nummer;
+		voornaam = gast.voornaam;
+		achternaam = gast.achternaam;
 	}
 }
 
@@ -191,7 +197,7 @@ class Gast {
 	String voornaam, achternaam;
 
 	Gast() {
-		voornaam = "";
+		voornaam = "Vrij";
 		achternaam = "";
 	}
 }
